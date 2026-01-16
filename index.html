@@ -1,99 +1,214 @@
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1e40af;
-    --sidebar-bg: #1e293b;
-    --paper-bg: #ffffff;
-    --text-main: #334155;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تطبيق الفواتير الاحترافي | PRO Invoice</title>
 
-* { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+    <!-- رمز AdSense الخاص بك (مهم جداً للمراجعة) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2161407887612919" crossorigin="anonymous"></script>
 
-body { margin: 0; background-color: #f1f5f9; color: var(--text-main); }
+    <!-- خط تجوال من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
-.app-wrapper { display: flex; min-height: 100vh; }
+    <style>
+        /* --- التنسيق الاحترافي (CSS) --- */
+        :root {
+            --primary: #2563eb;
+            --sidebar-bg: #1e293b;
+            --bg-body: #f1f5f9;
+            --text-main: #334155;
+            --border: #e2e8f0;
+        }
 
-/* Sidebar */
-.sidebar {
-    width: 300px;
-    background: var(--sidebar-bg);
-    color: white;
-    padding: 30px 20px;
-    position: fixed;
-    height: 100vh;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-}
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        body { margin: 0; background-color: var(--bg-body); color: var(--text-main); }
 
-.logo { font-size: 24px; font-weight: 700; margin-bottom: 40px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
-.logo span { color: var(--primary); }
+        .app-wrapper { display: flex; min-height: 100vh; }
 
-.control-group { margin-bottom: 25px; }
-.control-group label { display: block; font-size: 13px; margin-bottom: 8px; color: #94a3b8; }
-.control-group select, .control-group input {
-    width: 100%; background: #0f172a; border: 1px solid #334155;
-    color: white; padding: 10px; border-radius: 6px;
-}
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 280px; background: var(--sidebar-bg); color: white;
+            padding: 30px 20px; position: fixed; height: 100vh;
+            right: 0; top: 0; z-index: 1000; transition: 0.3s ease;
+        }
+        .sidebar h2 { color: var(--primary); font-size: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
 
-.toggle-wrapper { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+        .control-group { margin-bottom: 20px; }
+        .control-group label { display: block; font-size: 13px; color: #94a3b8; margin-bottom: 8px; }
+        
+        select, .sidebar input[type="number"] {
+            width: 100%; background: #0f172a; border: 1px solid #334155;
+            color: white; padding: 10px; border-radius: 6px; outline: none;
+        }
 
-/* Invoice Paper */
-.main-content { flex: 1; margin-right: 300px; padding: 40px; display: flex; justify-content: center; }
+        /* الفاتورة */
+        .main-content { flex: 1; margin-right: 280px; padding: 40px; display: flex; justify-content: center; }
 
-.invoice-paper {
-    width: 210mm; /* A4 Width */
-    min-height: 297mm;
-    background: white;
-    padding: 50px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-radius: 4px;
-}
+        .invoice-paper {
+            width: 210mm; min-height: 297mm; background: white; padding: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-radius: 4px;
+        }
 
-.paper-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
-.placeholder-logo { background: var(--primary); color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; margin-bottom: 10px; }
-.company-name { font-size: 20px; font-weight: 700; border: none; width: 300px; outline: none; }
-.invoice-label { font-size: 32px; font-weight: 300; color: var(--text-muted); }
+        .paper-header { display: flex; justify-content: space-between; border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 40px; }
+        .invoice-title { font-size: 28px; color: #94a3b8; font-weight: 300; }
+        .company-name { font-size: 22px; font-weight: 700; border: none; outline: none; }
 
-.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.meta-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; }
-.meta-item input { border: none; border-bottom: 1px solid var(--border-color); width: 120px; outline: none; }
-.client-name-input { width: 100%; font-size: 18px; padding: 10px 0; border: none; border-bottom: 2px solid var(--primary); outline: none; }
+        .meta-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+        .meta-item input { border: none; border-bottom: 1px solid var(--border); width: 120px; outline: none; }
+        
+        .client-input { width: 100%; font-size: 18px; padding: 10px 0; border: none; border-bottom: 2px solid var(--primary); outline: none; margin-bottom: 30px; }
 
-/* Table Style */
-table { width: 100%; border-collapse: collapse; }
-th { text-align: right; padding: 12px; border-bottom: 2px solid var(--border-color); color: var(--text-muted); font-size: 14px; }
-td { padding: 15px 12px; border-bottom: 1px solid var(--border-color); }
-table input { border: none; width: 100%; font-size: 15px; outline: none; }
+        /* الجدول */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { text-align: right; padding: 12px; background: #f8fafc; border-bottom: 2px solid var(--border); font-size: 14px; }
+        td { padding: 12px; border-bottom: 1px solid var(--border); }
+        td input { border: none; width: 100%; font-size: 14px; outline: none; }
 
-.add-row-btn { background: none; border: 1px dashed var(--primary); color: var(--primary); padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-.add-row-btn:hover { background: #eff6ff; }
+        .btn-add { background: none; border: 2px dashed var(--primary); color: var(--primary); padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: bold; }
 
-.paper-footer { display: flex; justify-content: space-between; margin-top: 50px; gap: 50px; }
-.notes-area { flex: 1; }
-.notes-area textarea { width: 100%; height: 100px; border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; resize: none; font-size: 13px; }
+        /* التذييل */
+        .paper-footer { display: flex; justify-content: space-between; margin-top: 40px; }
+        .totals-box { width: 250px; }
+        .total-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .grand-total { border: none; color: var(--primary); font-size: 20px; font-weight: 800; padding-top: 15px; }
 
-.totals-area { width: 280px; }
-.total-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-color); }
-.grand-total { border-bottom: none; color: var(--primary); font-size: 20px; font-weight: 800; padding-top: 20px; }
+        /* أزرار الإجراءات */
+        .btn-print { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
 
-/* Buttons */
-.btn-primary { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
-.btn-outline { width: 100%; background: none; border: 1px solid #334155; color: #94a3b8; padding: 10px; border-radius: 6px; cursor: pointer; }
+        /* الجوال */
+        .mobile-header { display: none; background: var(--sidebar-bg); color: white; padding: 15px; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; }
 
-/* Switch Toggle */
-.switch { position: relative; display: inline-block; width: 34px; height: 20px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 34px; }
-.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--primary); }
-input:checked + .slider:before { transform: translateX(14px); }
+        @media (max-width: 850px) {
+            .sidebar { right: -280px; }
+            .sidebar.active { right: 0; }
+            .main-content { margin-right: 0; padding: 10px; }
+            .mobile-header { display: flex; }
+            .overlay.active { display: block; }
+            .invoice-paper { width: 100%; padding: 20px; min-height: auto; box-shadow: none; }
+            .paper-footer { flex-direction: column; }
+            .totals-box { width: 100%; }
+        }
 
-/* Printing */
-@media print {
-    .no-print { display: none !important; }
-    .sidebar { display: none; }
-    .main-content { margin-right: 0; padding: 0; }
-    .invoice-paper { box-shadow: none; width: 100%; padding: 0; }
-    body { background: white; }
-    .add-row-btn { display: none; }
-}
+        @media print {
+            .no-print, .sidebar, .mobile-header, .overlay, .btn-add { display: none !important; }
+            .main-content { margin: 0; padding: 0; }
+            .invoice-paper { box-shadow: none; width: 100%; padding: 0; }
+            @page { size: A4; margin: 1cm; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <nav class="mobile-header no-print">
+        <div>PRO Invoice</div>
+        <button onclick="toggleMenu()" style="background:var(--primary); color:white; border:none; padding:5px 10px; border-radius:4px;">الإعدادات</button>
+    </nav>
+
+    <div class="app-wrapper">
+        <aside class="sidebar no-print" id="sidebar">
+            <h2>الإعدادات</h2>
+            <div class="control-group">
+                <label>العملة</label>
+                <select id="currency" onchange="calculate()">
+                    <option value="SAR">ريال سعودي (SAR)</option>
+                    <option value="USD">دولار أمريكي ($)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>الضريبة (%)</label>
+                <input type="number" id="taxRate" value="15" oninput="calculate()">
+            </div>
+            <button class="btn-print" onclick="processInvoice()">طباعة الفاتورة</button>
+        </aside>
+
+        <main class="main-content">
+            <div class="invoice-paper">
+                <div class="paper-header">
+                    <div><input type="text" class="company-name" value="اسم مؤسستك"></div>
+                    <div class="invoice-title">فاتورة</div>
+                </div>
+                
+                <div class="meta-item"><span>رقم الفاتورة:</span><input type="text" id="invNum" readonly></div>
+                <div class="meta-item"><span>التاريخ:</span><input type="date" id="invDate"></div>
+                
+                <input type="text" id="clientName" class="client-input" placeholder="اسم العميل...">
+
+                <table id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th>الوصف</th>
+                            <th width="80">الكمية</th>
+                            <th width="100">السعر</th>
+                            <th width="100">الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+                <button class="btn-add no-print" onclick="addRow()">+ إضافة بند</button>
+
+                <div class="paper-footer">
+                    <div style="flex:1"><textarea placeholder="ملاحظات..." style="width:100%; height:80px; border:1px solid var(--border); border-radius:6px; padding:10px; resize:none;"></textarea></div>
+                    <div class="totals-box">
+                        <div class="total-row"><span>المجموع</span><span id="subTotal">0.00</span></div>
+                        <div class="total-row"><span>الضريبة</span><span id="taxValue">0.00</span></div>
+                        <div class="total-row grand-total"><span>الإجمالي</span><span id="grandTotal">0.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        window.onload = () => {
+            document.getElementById('invDate').valueAsDate = new Date();
+            document.getElementById('invNum').value = localStorage.getItem('inv_count') || 1001;
+            addRow();
+        };
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function addRow() {
+            const tbody = document.getElementById("tbody");
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><input type="text" class="desc" placeholder="وصف..."></td>
+                <td><input type="number" class="qty" value="1" oninput="calculate()"></td>
+                <td><input type="number" class="price" value="0.00" oninput="calculate()"></td>
+                <td style="font-weight:bold" class="line-total">0.00</td>
+            `;
+            tbody.appendChild(row);
+        }
+
+        function calculate() {
+            let subtotal = 0;
+            document.querySelectorAll("#tbody tr").forEach(row => {
+                const q = parseFloat(row.querySelector(".qty").value) || 0;
+                const p = parseFloat(row.querySelector(".price").value) || 0;
+                const total = q * p;
+                row.querySelector(".line-total").innerText = total.toFixed(2);
+                subtotal += total;
+            });
+            const taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
+            const tax = subtotal * (taxRate / 100);
+            const curr = document.getElementById("currency").value;
+            
+            document.getElementById("subTotal").innerText = subtotal.toFixed(2) + " " + curr;
+            document.getElementById("taxValue").innerText = tax.toFixed(2) + " " + curr;
+            document.getElementById("grandTotal").innerText = (subtotal + tax).toFixed(2) + " " + curr;
+        }
+
+        function processInvoice() {
+            if(!document.getElementById("clientName").value) return alert("أدخل اسم العميل");
+            localStorage.setItem('inv_count', parseInt(document.getElementById('invNum').value) + 1);
+            window.print();
+        }
+    </script>
+</body>
+</html>
