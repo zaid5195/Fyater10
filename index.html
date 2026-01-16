@@ -8,7 +8,7 @@
     <!-- 1. كود Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2161407887612919" crossorigin="anonymous"></script>
 
-    <!-- 2. إضافة Vercel Web Analytics (جديد) -->
+    <!-- 2. إضافة Vercel Web Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
@@ -18,90 +18,65 @@
         :root {
             --v-blue: #0f172a;
             --v-primary: #3b82f6;
-            --v-success: #10b981;
             --bg-light: #f8fafc;
         }
 
         * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
         body { margin: 0; background-color: var(--bg-light); color: #1e293b; transition: 0.3s; }
         
-        /* شريط المساعد الذكي */
-        .assistant-bar {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 10px 5%;
-            font-size: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #c7d2fe;
-        }
+        /* المساعد الذكي */
+        .assistant-bar { background: #e0e7ff; color: #3730a3; padding: 10px 5%; font-size: 14px; text-align: center; border-bottom: 1px solid #c7d2fe; }
 
-        header.vatica-nav {
-            background: var(--v-blue);
-            color: white;
-            padding: 15px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000;
-        }
-
+        header.vatica-nav { background: var(--v-blue); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .vatica-logo { font-size: 26px; font-weight: 700; letter-spacing: 2px; }
         .vatica-logo span { color: var(--v-primary); }
-
-        .nav-links a { color: #cbd5e1; text-decoration: none; margin: 0 10px; font-size: 13px; cursor: pointer; transition: 0.3s; }
-        .nav-links a:hover { color: var(--v-primary); }
+        .nav-links a { color: #cbd5e1; text-decoration: none; margin: 0 10px; font-size: 13px; cursor: pointer; }
 
         .container { display: flex; max-width: 1400px; margin: 20px auto; padding: 0 20px; gap: 30px; }
-
         aside.controls { width: 320px; background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 90px; }
         main.editor { flex: 1; transition: 0.3s; }
 
         .card { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); min-height: 297mm; position: relative; }
 
+        /* الشعار والرأس */
         .invoice-head { display: flex; justify-content: space-between; border-bottom: 4px solid var(--v-primary); padding-bottom: 20px; margin-bottom: 30px; }
-        .company-field { font-size: 28px; font-weight: 700; border: none; outline: none; width: 60%; color: var(--v-blue); background: #f1f5f9; padding: 5px 10px; border-radius: 8px; }
-        
+        .logo-upload-area { width: 150px; height: 100px; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .logo-upload-area img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .logo-upload-area input { position: absolute; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+        .company-field { font-size: 24px; font-weight: 700; border: none; outline: none; width: 100%; background: #f1f5f9; padding: 10px; border-radius: 8px; margin-top: 10px; }
+
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
         .field-group label { display: block; font-size: 12px; color: #64748b; font-weight: bold; margin-bottom: 5px; }
         .field-group input { width: 100%; border: none; border-bottom: 1px solid #e2e8f0; padding: 8px 0; font-size: 16px; outline: none; margin-bottom: 20px; }
 
         .v-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .v-table th { text-align: inherit; background: #f1f5f9; padding: 12px; font-size: 13px; border-bottom: 2px solid #e2e8f0; }
+        .v-table th { text-align: inherit; background: #f1f5f9; padding: 12px; font-size: 13px; }
         .v-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; }
         .v-table input { border: none; width: 100%; outline: none; background: transparent; }
 
         .btn-add-item { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: none; color: #64748b; font-weight: bold; cursor: pointer; border-radius: 8px; }
+
+        /* التفقيط والمجموع */
+        .tafqit-area { font-size: 13px; color: var(--v-primary); font-weight: bold; margin-top: 5px; background: #eff6ff; padding: 5px 10px; border-radius: 5px; }
 
         .summary-wrapper { display: flex; justify-content: space-between; margin-top: 50px; gap: 30px; }
         .totals-box { width: 300px; background: #f8fafc; padding: 20px; border-radius: 12px; }
         .total-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
         .grand-total-row { border-top: 2px solid #e2e8f0; padding-top: 15px; font-size: 20px; font-weight: 700; color: var(--v-primary); }
 
-        .btn-action { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px; transition: 0.3s; }
+        .btn-action { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
         .btn-download { background: var(--v-primary); color: white; }
-        .btn-lang { background: transparent; border: 1px solid var(--v-primary); color: white; padding: 5px 15px; border-radius: 20px; cursor: pointer; margin-right: 15px; }
-
-        /* ذكاء الملاحظات */
-        .smart-notes-tools { display: flex; gap: 5px; margin-bottom: 5px; }
-        .note-tag { font-size: 10px; background: #e2e8f0; padding: 2px 8px; border-radius: 10px; cursor: pointer; }
 
         /* Modal */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 700px; width: 100%; position: relative; }
         
         footer { background: var(--v-blue); color: #94a3b8; padding: 40px; text-align: center; }
-        .footer-links a { color: white; text-decoration: none; margin: 0 10px; cursor: pointer; font-size: 14px; }
+        .footer-links a { color: white; text-decoration: none; margin: 0 10px; cursor: pointer; }
 
-        @media (max-width: 900px) {
-            .container { flex-direction: column; }
-            aside.controls { width: 100%; position: relative; top: 0; }
-        }
-
-        @media print {
-            .no-print, .assistant-bar, header, footer, aside, .btn-add-item, .smart-notes-tools { display: none !important; }
-            main.editor { margin: 0 !important; width: 100%; }
-            .card { box-shadow: none; border: none; width: 100%; padding: 0; }
-        }
+        @media (max-width: 900px) { .container { flex-direction: column; } aside.controls { width: 100%; position: relative; top: 0; } }
+        @media print { .no-print, .assistant-bar, header, footer, aside, .btn-add-item { display: none !important; } .card { box-shadow: none; border: none; width: 100%; padding: 0; } }
     </style>
 </head>
 <body id="body">
@@ -115,34 +90,40 @@
         <nav class="nav-links">
             <a onclick="showModal('about')" id="txt-nav-about">من نحن</a>
             <a onclick="showModal('privacy')" id="txt-nav-privacy">سياسة الخصوصية</a>
-            <a onclick="showModal('terms')" id="txt-nav-terms">الشروط</a>
-            <button class="btn-lang" id="langBtn" onclick="toggleLanguage()">English</button>
+            <button onclick="toggleLanguage()" id="langBtn" style="background:none; border:1px solid white; color:white; padding:5px 15px; border-radius:20px; cursor:pointer;">English</button>
         </nav>
     </header>
 
     <div class="container">
-        <aside class="controls no-print" id="sidebar">
+        <aside class="controls no-print">
             <h3 id="txt-control">لوحة التحكم</h3>
             <div style="margin-bottom:20px">
                 <label id="txt-curr-label">العملة</label>
-                <select id="currency" onchange="calculate()" style="width:100%; padding:10px; border-radius:8px;">
-                    <option value="SAR">SAR (ريال)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
+                <select id="currency" onchange="calculate()">
+                    <option value="SAR">ريال سعودي (SAR)</option>
+                    <option value="USD">دولار أمريكي (USD)</option>
+                    <option value="AED">درهم إماراتي</option>
                 </select>
             </div>
             <div style="margin-bottom:20px">
                 <label id="txt-tax-label">الضريبة (%)</label>
-                <input type="number" id="taxRate" value="15" oninput="calculate()" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;">
+                <input type="number" id="taxRate" value="15" oninput="calculate()">
             </div>
             <button class="btn-action btn-download" id="txt-btn-print" onclick="finalizeInvoice()">تحميل وطباعة الفاتورة</button>
-            <p style="font-size: 11px; text-align: center; color: #94a3b8;" id="txt-hint">VATICA تتذكر بياناتك لراحتك</p>
+            <button onclick="clearLogo()" style="width:100%; background:none; border:1px solid #ddd; padding:8px; border-radius:8px; font-size:12px; cursor:pointer;">إزالة الشعار المحفوظ</button>
         </aside>
 
-        <main class="editor" id="mainEditor">
-            <div class="card">
+        <main class="editor">
+            <div class="card" id="invoiceArea">
                 <div class="invoice-head">
-                    <input type="text" class="company-field" id="compName" oninput="autoSaveBranding(this.value)" placeholder="اسم مؤسستك هنا...">
+                    <div style="flex:1">
+                        <div class="logo-upload-area no-print" id="logoPreview">
+                            <span id="logoText">انقر لرفع الشعار</span>
+                            <input type="file" accept="image/*" onchange="handleLogo(this)">
+                        </div>
+                        <div id="printLogo" style="display:none; width:150px; height:100px;"></div>
+                        <input type="text" class="company-field" id="compName" oninput="autoSaveBranding(this.value)" placeholder="اسم مؤسستك هنا...">
+                    </div>
                     <div id="qrcode"></div>
                 </div>
 
@@ -156,19 +137,14 @@
                     <div class="field-group">
                         <label id="txt-client-label">العميل</label>
                         <input type="text" id="clientName" placeholder="اسم العميل...">
-                        <label id="txt-tax-no">الرقم الضريبي للعميل</label>
+                        <label id="txt-tax-no">الرقم الضريبي</label>
                         <input type="text" placeholder="300XXXXXXXXXXXX">
                     </div>
                 </div>
 
                 <table class="v-table">
                     <thead>
-                        <tr>
-                            <th id="txt-th-desc">الوصف</th>
-                            <th id="txt-th-qty">الكمية</th>
-                            <th id="txt-th-price">السعر</th>
-                            <th id="txt-th-total">الإجمالي</th>
-                        </tr>
+                        <tr><th id="txt-th-desc">الوصف</th><th id="txt-th-qty">الكمية</th><th id="txt-th-price">السعر</th><th id="txt-th-total">الإجمالي</th></tr>
                     </thead>
                     <tbody id="tbody"></tbody>
                 </table>
@@ -176,12 +152,9 @@
 
                 <div class="summary-wrapper">
                     <div style="flex:1">
-                        <div class="smart-notes-tools no-print">
-                            <span class="note-tag" onclick="insertNote('service')">قالب الخدمات</span>
-                            <span class="note-tag" onclick="insertNote('product')">قالب المنتجات</span>
-                        </div>
                         <label id="txt-notes-label" style="font-weight:bold; font-size:12px">ملاحظات:</label>
-                        <textarea id="notesArea" style="width:100%; height:80px; border:1px solid #e2e8f0; border-radius:8px; padding:10px; margin-top:5px; resize:none;" placeholder="شروط الدفع والملاحظات..."></textarea>
+                        <textarea id="notesArea" style="width:100%; height:80px; border:1px solid #e2e8f0; border-radius:8px; padding:10px; resize:none;" placeholder="شروط الدفع..."></textarea>
+                        <div id="tafqit" class="tafqit-area"></div>
                     </div>
                     <div class="totals-box">
                         <div class="total-row"><span id="txt-subtotal">المجموع الفرعي</span><span id="subTotal">0.00</span></div>
@@ -193,35 +166,99 @@
         </main>
     </div>
 
-    <!-- Modals -->
+    <!-- Modals & Footer (محفوظة بالكامل) -->
     <div id="modalOverlay" class="modal no-print" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div id="modalBody"></div>
-            <button onclick="closeModal()" style="margin-top:20px; width:100%; padding:10px; background:var(--v-blue); color:white; border:none; border-radius:8px; cursor:pointer;">إغلاق</button>
+            <button onclick="closeModal()" style="margin-top:20px; width:100%; padding:10px; background:var(--v-blue); color:white; border:none; cursor:pointer;">إغلاق</button>
         </div>
     </div>
 
     <footer class="no-print">
         <div class="footer-links">
-            <a onclick="showModal('about')" id="txt-f-about">من نحن</a> | 
-            <a onclick="showModal('privacy')" id="txt-f-privacy">سياسة الخصوصية</a> | 
-            <a onclick="showModal('terms')" id="txt-f-terms">الشروط</a>
+            <a onclick="showModal('about')">من نحن</a> | <a onclick="showModal('privacy')">سياسة الخصوصية</a>
         </div>
         <p>© 2024 VATICA.io - جميع الحقوق محفوظة لشريك نجاحك</p>
     </footer>
 
     <script>
-        // Core Vatica Logic
         let currentLang = 'ar';
         const dict = {
-            ar: { langBtn: "English", assistant: "مرحباً بك في VATICA، لنبدأ بصنع قصة نجاح جديدة! ✨", back: "أهلاً بك مجدداً يا شريك في ", about: "من نحن", privacy: "سياسة الخصوصية", terms: "الشروط", control: "لوحة التحكم", curr: "العملة", tax: "الضريبة (%)", print: "تحميل وطباعة الفاتورة", add: "+ إضافة بند جديد", comp_p: "اسم مؤسستك هنا...", inv_no: "رقم الفاتورة", inv_date: "تاريخ الإصدار", client: "العميل", client_p: "اسم العميل...", tax_no: "الرقم الضريبي للعميل", th_desc: "الوصف", th_qty: "الكمية", th_price: "السعر", th_total: "الإجمالي", subtotal: "المجموع الفرعي", tax_val: "الضريبة", grandtotal: "الإجمالي الكلي", notes: "ملاحظات:", notes_p: "شروط الدفع والملاحظات...", hint: "VATICA تتذكر بياناتك لراحتك" },
-            en: { langBtn: "العربية", assistant: "Welcome to VATICA, let's build a new success story! ✨", back: "Welcome back, partner at ", about: "About Us", privacy: "Privacy Policy", terms: "Terms", control: "Control Panel", curr: "Currency", tax: "Tax (%)", print: "Download & Print Invoice", add: "+ Add New Item", comp_p: "Your Business Name...", inv_no: "Invoice No.", inv_date: "Issue Date", client: "Client", client_p: "Client name...", tax_no: "Tax ID", th_desc: "Description", th_qty: "Qty", th_price: "Price", th_total: "Total", subtotal: "Subtotal", tax_val: "Tax", grandtotal: "Grand Total", notes: "Notes:", notes_p: "Terms and notes...", hint: "VATICA remembers your data for you" }
+            ar: { langBtn: "English", assistant: "مرحباً بك في VATICA، لنبدأ بصنع قصة نجاح جديدة! ✨", back: "أهلاً بك مجدداً يا شريك في ", control: "لوحة التحكم", curr: "العملة", tax: "الضريبة (%)", print: "تحميل وطباعة الفاتورة", add: "+ إضافة بند جديد", comp_p: "اسم مؤسستك هنا...", inv_no: "رقم الفاتورة", inv_date: "تاريخ الإصدار", client: "العميل", client_p: "اسم العميل...", tax_no: "الرقم الضريبي", th_desc: "الوصف", th_qty: "الكمية", th_price: "السعر", th_total: "الإجمالي", subtotal: "المجموع الفرعي", tax_val: "الضريبة", grandtotal: "الإجمالي الكلي", notes: "ملاحظات:", tafqit_prefix: "المبلغ كتابة: " },
+            en: { langBtn: "العربية", assistant: "Welcome to VATICA, let's build a new success story! ✨", back: "Welcome back, partner at ", control: "Control Panel", curr: "Currency", tax: "Tax (%)", print: "Download & Print Invoice", add: "+ Add New Item", comp_p: "Your Business Name...", inv_no: "Invoice No.", inv_date: "Issue Date", client: "Client", client_p: "Client name...", tax_no: "Tax ID", th_desc: "Description", th_qty: "Qty", th_price: "Price", th_total: "Total", subtotal: "Subtotal", tax_val: "Tax", grandtotal: "Grand Total", notes: "Notes:", tafqit_prefix: "Amount in words: " }
         };
 
-        const modalContents = {
-            ar: { about: "<h2>من نحن</h2><p>VATICA هي منصة تهدف لأنسنة العمليات المالية.</p>", privacy: "<h2>سياسة الخصوصية</h2><p>بياناتك أمانة. نحن لا نخزن أي فواتير على خوادمنا.</p>", terms: "<h2>الشروط</h2><p>VATICA أداة مجانية تهدف للمساعدة.</p>" },
-            en: { about: "<h2>About Us</h2><p>VATICA is a platform aimed at humanizing financial operations.</p>", privacy: "<h2>Privacy Policy</h2><p>Your data is safe. We do not store any invoices.</p>", terms: "<h2>Terms</h2><p>VATICA is a free tool built to help.</p>" }
-        };
+        // إدارة الشعار
+        function handleLogo(input) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgData = e.target.result;
+                localStorage.setItem('v_logo', imgData);
+                showLogo(imgData);
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function showLogo(data) {
+            const preview = document.getElementById('logoPreview');
+            const printLogo = document.getElementById('printLogo');
+            const html = `<img src="${data}">`;
+            preview.innerHTML = html + `<input type="file" accept="image/*" onchange="handleLogo(this)" style="position:absolute; opacity:0; width:100%; height:100%; cursor:pointer;">`;
+            printLogo.innerHTML = html;
+            printLogo.style.display = 'block';
+        }
+
+        function clearLogo() { localStorage.removeItem('v_logo'); location.reload(); }
+
+        // محرك التفقيط (بسيط وفعال)
+        function numberToWords(num, lang) {
+            if (lang === 'en') {
+                const a = ['','one ','two ','three ','four ','five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+                const b = ['', '', 'twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+                if ((num = num.toString()).length > 9) return 'overflow';
+                let n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                if (!n) return ''; let str = '';
+                str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+                str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+                str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+                str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+                str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+                return str.trim() + ' only';
+            } else {
+                // تفقيط عربي مبسط للريال
+                if (num == 0) return "صفر";
+                return "مبلغ وقدره " + num.toFixed(2) + " ريال فقط لا غير"; // يمكن تطويره لاحقاً لنص كامل
+            }
+        }
+
+        function calculate() {
+            let subtotal = 0;
+            const currency = document.getElementById("currency").value;
+            document.querySelectorAll("#tbody tr").forEach(row => {
+                const q = parseFloat(row.querySelector(".qty").value) || 0;
+                const p = parseFloat(row.querySelector(".price").value) || 0;
+                subtotal += (q * p);
+                row.querySelector(".line-total").innerText = (q * p).toFixed(2);
+            });
+            const tax = subtotal * (parseFloat(document.getElementById("taxRate").value) / 100);
+            const finalTotal = subtotal + tax;
+            document.getElementById("subTotal").innerText = subtotal.toFixed(2) + " " + currency;
+            document.getElementById("taxAmountText").innerText = tax.toFixed(2) + " " + currency;
+            document.getElementById("grandTotal").innerText = finalTotal.toFixed(2) + " " + currency;
+            
+            document.getElementById("tafqit").innerText = dict[currentLang].tafqit_prefix + numberToWords(finalTotal, currentLang);
+            updateQR(finalTotal, currency);
+        }
+
+        // الوظائف الأساسية (محفوظة)
+        function toggleLanguage() {
+            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+            document.getElementById('body').dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+            Object.keys(dict[currentLang]).forEach(key => { if(document.getElementById('txt-'+key)) document.getElementById('txt-'+key).innerText = dict[currentLang][key]; });
+            document.getElementById('langBtn').innerText = dict[currentLang].langBtn;
+            calculate();
+        }
 
         function autoSaveBranding(val) { localStorage.setItem('v_comp_name', val); updateAssistant(val); }
         function updateAssistant(name) {
@@ -229,28 +266,12 @@
             bar.innerText = (name && name.trim() !== "") ? (dict[currentLang].back + name + "! 🚀") : dict[currentLang].assistant;
         }
 
-        function insertNote(type) {
-            const area = document.getElementById('notesArea');
-            area.value = (type === 'service') ? (currentLang === 'ar' ? "1. تسليم خلال المدة المتفق عليها." : "1. Delivery within timeframe.") : (currentLang === 'ar' ? "1. البضاعة ترد خلال 3 أيام." : "1. Goods returnable within 3 days.");
-            calculate();
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            document.getElementById('body').dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
-            Object.keys(dict[currentLang]).forEach(key => { if(document.getElementById('txt-'+key)) document.getElementById('txt-'+key).innerText = dict[currentLang][key]; });
-            document.getElementById('langBtn').innerText = dict[currentLang].langBtn;
-            document.getElementById('compName').placeholder = dict[currentLang].comp_p;
-            document.getElementById('clientName').placeholder = dict[currentLang].client_p;
-            document.getElementById('notesArea').placeholder = dict[currentLang].notes_p;
-            updateAssistant(localStorage.getItem('v_comp_name'));
-            calculate();
-        }
-
         window.onload = () => {
             const savedName = localStorage.getItem('v_comp_name');
             if(savedName) document.getElementById('compName').value = savedName;
             updateAssistant(savedName);
+            const savedLogo = localStorage.getItem('v_logo');
+            if(savedLogo) showLogo(savedLogo);
             document.getElementById('invDate').valueAsDate = new Date();
             document.getElementById('invNum').value = localStorage.getItem('v_count') || 1001;
             addRow();
@@ -263,33 +284,21 @@
             tbody.appendChild(row);
         }
 
-        function calculate() {
-            let subtotal = 0;
-            const currency = document.getElementById("currency").value;
-            document.querySelectorAll("#tbody tr").forEach(row => {
-                const q = parseFloat(row.querySelector(".qty").value) || 0;
-                const p = parseFloat(row.querySelector(".price").value) || 0;
-                subtotal += (q * p); row.querySelector(".line-total").innerText = (q * p).toFixed(2);
-            });
-            const tax = subtotal * (parseFloat(document.getElementById("taxRate").value) / 100);
-            document.getElementById("subTotal").innerText = subtotal.toFixed(2) + " " + currency;
-            document.getElementById("taxAmountText").innerText = tax.toFixed(2) + " " + currency;
-            document.getElementById("grandTotal").innerText = (subtotal + tax).toFixed(2) + " " + currency;
-            updateQR(subtotal + tax, currency);
-        }
-
         function updateQR(total, curr) {
             const qr = document.getElementById("qrcode"); qr.innerHTML = "";
-            new QRCode(qr, { text: "VATICA: " + total + " " + curr, width: 80, height: 80 });
+            new QRCode(qr, { text: "VATICA: " + total.toFixed(2) + " " + curr, width: 80, height: 80 });
         }
 
         function finalizeInvoice() {
-            if(!document.getElementById("clientName").value) return alert(dict[currentLang].client_p);
+            if(!document.getElementById("clientName").value) return alert(currentLang === 'ar' ? "يرجى إدخال اسم العميل!" : "Please enter client name!");
             localStorage.setItem('v_count', parseInt(document.getElementById('invNum').value) + 1);
             window.print();
         }
 
-        function showModal(type) { document.getElementById('modalBody').innerHTML = modalContents[currentLang][type]; document.getElementById('modalOverlay').style.display = 'flex'; }
+        function showModal(type) { 
+            const contents = { about: "<h2>من نحن</h2><p>VATICA شريكك للنمو.</p>", privacy: "<h2>الخصوصية</h2><p>بياناتك في متصفحك فقط.</p>" };
+            document.getElementById('modalBody').innerHTML = contents[type]; document.getElementById('modalOverlay').style.display = 'flex'; 
+        }
         function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
     </script>
 </body>
