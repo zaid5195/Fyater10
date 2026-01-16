@@ -2,192 +2,239 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تطبيق الفواتير الاحترافي | PRO Invoice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج إنشاء فواتير ضريبية مجاني | PRO Invoice</title>
+    <meta name="description" content="أفضل أداة مجانية لإنشاء الفواتير الضريبية وتحميلها بصيغة PDF. أداة سهلة وسريعة للمؤسسات والشركات.">
 
-    <!-- رمز AdSense الخاص بك (مهم جداً للمراجعة) -->
+    <!-- كود Google AdSense الخاص بك -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2161407887612919" crossorigin="anonymous"></script>
 
-    <!-- خط تجوال من جوجل -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- التنسيق الاحترافي (CSS) --- */
         :root {
             --primary: #2563eb;
-            --sidebar-bg: #1e293b;
-            --bg-body: #f1f5f9;
-            --text-main: #334155;
-            --border: #e2e8f0;
+            --dark-bg: #1e293b;
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
         }
 
         * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        body { margin: 0; background-color: var(--bg-body); color: var(--text-main); }
+        body { margin: 0; background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
 
-        .app-wrapper { display: flex; min-height: 100vh; }
+        /* Navigation */
+        header.top-nav { background: var(--dark-bg); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; margin-right: 20px; font-size: 14px; transition: 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* القائمة الجانبية */
-        .sidebar {
-            width: 280px; background: var(--sidebar-bg); color: white;
-            padding: 30px 20px; position: fixed; height: 100vh;
-            right: 0; top: 0; z-index: 1000; transition: 0.3s ease;
-        }
-        .sidebar h2 { color: var(--primary); font-size: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
-
-        .control-group { margin-bottom: 20px; }
-        .control-group label { display: block; font-size: 13px; color: #94a3b8; margin-bottom: 8px; }
+        /* Main Layout */
+        .container { display: flex; max-width: 1400px; margin: 30px auto; padding: 0 20px; gap: 30px; }
         
-        select, .sidebar input[type="number"] {
-            width: 100%; background: #0f172a; border: 1px solid #334155;
-            color: white; padding: 10px; border-radius: 6px; outline: none;
-        }
+        /* Sidebar Settings */
+        aside.settings-panel { width: 300px; background: var(--white); padding: 25px; border-radius: 12px; height: fit-content; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .settings-panel h3 { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--light-bg); padding-bottom: 10px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+        select, .settings-panel input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; outline: none; }
 
-        /* الفاتورة */
-        .main-content { flex: 1; margin-right: 280px; padding: 40px; display: flex; justify-content: center; }
-
-        .invoice-paper {
-            width: 210mm; min-height: 297mm; background: white; padding: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-radius: 4px;
-        }
-
-        .paper-header { display: flex; justify-content: space-between; border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 40px; }
-        .invoice-title { font-size: 28px; color: #94a3b8; font-weight: 300; }
-        .company-name { font-size: 22px; font-weight: 700; border: none; outline: none; }
-
-        .meta-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
-        .meta-item input { border: none; border-bottom: 1px solid var(--border); width: 120px; outline: none; }
+        /* Invoice Paper */
+        main.invoice-area { flex: 1; }
+        .invoice-paper { background: var(--white); padding: 50px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-height: 1000px; }
+        .paper-header { display: flex; justify-content: space-between; border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; }
+        .company-name { font-size: 24px; font-weight: 700; border: none; width: 100%; outline: none; }
         
-        .client-input { width: 100%; font-size: 18px; padding: 10px 0; border: none; border-bottom: 2px solid var(--primary); outline: none; margin-bottom: 30px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+        .meta-item { display: flex; gap: 10px; font-size: 14px; margin-bottom: 10px; }
+        .meta-item input { border: none; border-bottom: 1px solid #e2e8f0; width: 120px; outline: none; }
+        .client-input { width: 100%; font-size: 18px; border: none; border-bottom: 2px solid var(--primary); outline: none; padding: 10px 0; }
 
-        /* الجدول */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th { text-align: right; padding: 12px; background: #f8fafc; border-bottom: 2px solid var(--border); font-size: 14px; }
-        td { padding: 12px; border-bottom: 1px solid var(--border); }
-        td input { border: none; width: 100%; font-size: 14px; outline: none; }
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+        th { background: var(--light-bg); text-align: right; padding: 12px; border-bottom: 2px solid #e2e8f0; font-size: 14px; }
+        td { padding: 12px; border-bottom: 1px solid #f1f5f9; }
+        td input { border: none; width: 100%; outline: none; font-size: 14px; }
+        .btn-add { background: none; border: 2px dashed var(--primary); color: var(--primary); width: 100%; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 700; }
 
-        .btn-add { background: none; border: 2px dashed var(--primary); color: var(--primary); padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: bold; }
+        /* Totals */
+        .footer-flex { display: flex; justify-content: space-between; margin-top: 40px; gap: 40px; }
+        .totals-box { width: 280px; }
+        .total-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+        .grand-total { border: none; color: var(--primary); font-size: 22px; font-weight: 800; }
 
-        /* التذييل */
-        .paper-footer { display: flex; justify-content: space-between; margin-top: 40px; }
-        .totals-box { width: 250px; }
-        .total-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
-        .grand-total { border: none; color: var(--primary); font-size: 20px; font-weight: 800; padding-top: 15px; }
+        /* Content Section for SEO */
+        .seo-content { max-width: 900px; margin: 50px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .seo-content h2 { color: var(--primary); }
 
-        /* أزرار الإجراءات */
-        .btn-print { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        /* Footer */
+        footer.main-footer { background: var(--dark-bg); color: #94a3b8; padding: 40px 5%; text-align: center; margin-top: 50px; }
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 14px; cursor: pointer; }
 
-        /* الجوال */
-        .mobile-header { display: none; background: var(--sidebar-bg); color: white; padding: 15px; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; }
-        .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; }
+        /* Modals */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 12px; max-width: 700px; max-height: 80vh; overflow-y: auto; position: relative; }
+        .close-modal { position: absolute; left: 20px; top: 20px; cursor: pointer; font-size: 24px; }
 
-        @media (max-width: 850px) {
-            .sidebar { right: -280px; }
-            .sidebar.active { right: 0; }
-            .main-content { margin-right: 0; padding: 10px; }
-            .mobile-header { display: flex; }
-            .overlay.active { display: block; }
-            .invoice-paper { width: 100%; padding: 20px; min-height: auto; box-shadow: none; }
-            .paper-footer { flex-direction: column; }
-            .totals-box { width: 100%; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            aside.settings-panel { width: 100%; }
+            .main-content { padding: 0; }
+            .invoice-paper { padding: 20px; width: 100%; }
+            .paper-header { flex-direction: column; text-align: center; }
+            .info-grid { grid-template-columns: 1fr; }
+            header.top-nav { flex-direction: column; gap: 15px; }
         }
 
         @media print {
-            .no-print, .sidebar, .mobile-header, .overlay, .btn-add { display: none !important; }
-            .main-content { margin: 0; padding: 0; }
+            .no-print, header, aside, footer, .seo-content, .btn-add { display: none !important; }
+            .container { margin: 0; padding: 0; }
             .invoice-paper { box-shadow: none; width: 100%; padding: 0; }
-            @page { size: A4; margin: 1cm; }
+            body { background: white; }
         }
     </style>
 </head>
 <body>
 
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <header class="top-nav no-print">
+        <div class="logo">PRO INVOICE</div>
+        <nav class="nav-links">
+            <a onclick="showModal('about')">من نحن</a>
+            <a onclick="showModal('privacy')">سياسة الخصوصية</a>
+            <a onclick="showModal('terms')">الشروط والأحكام</a>
+        </nav>
+    </header>
 
-    <nav class="mobile-header no-print">
-        <div>PRO Invoice</div>
-        <button onclick="toggleMenu()" style="background:var(--primary); color:white; border:none; padding:5px 10px; border-radius:4px;">الإعدادات</button>
-    </nav>
-
-    <div class="app-wrapper">
-        <aside class="sidebar no-print" id="sidebar">
-            <h2>الإعدادات</h2>
-            <div class="control-group">
+    <div class="container">
+        <!-- Settings Sidebar -->
+        <aside class="settings-panel no-print">
+            <h3>إعدادات الفاتورة</h3>
+            <div class="input-group">
                 <label>العملة</label>
                 <select id="currency" onchange="calculate()">
                     <option value="SAR">ريال سعودي (SAR)</option>
                     <option value="USD">دولار أمريكي ($)</option>
+                    <option value="AED">درهم إماراتي</option>
                 </select>
             </div>
-            <div class="control-group">
+            <div class="input-group">
                 <label>الضريبة (%)</label>
                 <input type="number" id="taxRate" value="15" oninput="calculate()">
             </div>
-            <button class="btn-print" onclick="processInvoice()">طباعة الفاتورة</button>
+            <button class="btn-add" style="background:var(--primary); color:white; border:none; padding:15px;" onclick="generatePDF()">إصدار وطباعة الفاتورة</button>
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 15px;">* يتم حفظ رقم الفاتورة تلقائياً للمرة القادمة.</p>
         </aside>
 
-        <main class="main-content">
-            <div class="invoice-paper">
+        <!-- Invoice Area -->
+        <main class="invoice-area">
+            <article class="invoice-paper" id="invoice">
                 <div class="paper-header">
-                    <div><input type="text" class="company-name" value="اسم مؤسستك"></div>
-                    <div class="invoice-title">فاتورة</div>
+                    <input type="text" class="company-name" value="اسم شركتك أو مؤسستك">
+                    <div style="text-align: left;">
+                        <h1 style="margin:0; color:#cbd5e1; font-weight:300;">فاتورة ضريبية</h1>
+                    </div>
                 </div>
-                
-                <div class="meta-item"><span>رقم الفاتورة:</span><input type="text" id="invNum" readonly></div>
-                <div class="meta-item"><span>التاريخ:</span><input type="date" id="invDate"></div>
-                
-                <input type="text" id="clientName" class="client-input" placeholder="اسم العميل...">
 
-                <table id="itemsTable">
+                <div class="info-grid">
+                    <div>
+                        <div class="meta-item"><span>رقم الفاتورة:</span><input type="text" id="invNum" readonly></div>
+                        <div class="meta-item"><span>التاريخ:</span><input type="date" id="invDate"></div>
+                    </div>
+                    <div>
+                        <label style="font-size:12px; font-weight:700; color:var(--primary);">العميل:</label>
+                        <input type="text" id="clientName" class="client-input" placeholder="اسم العميل الكامل...">
+                    </div>
+                </div>
+
+                <table>
                     <thead>
                         <tr>
                             <th>الوصف</th>
                             <th width="80">الكمية</th>
-                            <th width="100">السعر</th>
-                            <th width="100">الإجمالي</th>
+                            <th width="120">السعر</th>
+                            <th width="120">الإجمالي</th>
                         </tr>
                     </thead>
                     <tbody id="tbody"></tbody>
                 </table>
-                <button class="btn-add no-print" onclick="addRow()">+ إضافة بند</button>
+                <button class="btn-add no-print" onclick="addRow()">+ إضافة بند جديد</button>
 
-                <div class="paper-footer">
-                    <div style="flex:1"><textarea placeholder="ملاحظات..." style="width:100%; height:80px; border:1px solid var(--border); border-radius:6px; padding:10px; resize:none;"></textarea></div>
+                <div class="footer-flex">
+                    <div style="flex:1">
+                        <label style="font-size:12px; font-weight:700;">ملاحظات:</label>
+                        <textarea style="width:100%; height:100px; border:1px solid #e2e8f0; border-radius:8px; padding:10px; margin-top:5px; resize:none;" placeholder="شروط الدفع أو أي تعليمات إضافية..."></textarea>
+                    </div>
                     <div class="totals-box">
-                        <div class="total-row"><span>المجموع</span><span id="subTotal">0.00</span></div>
-                        <div class="total-row"><span>الضريبة</span><span id="taxValue">0.00</span></div>
-                        <div class="total-row grand-total"><span>الإجمالي</span><span id="grandTotal">0.00</span></div>
+                        <div class="total-row"><span>المجموع الفرعي:</span><span id="subTotal">0.00</span></div>
+                        <div class="total-row"><span>الضريبة (<span id="taxLabel">15</span>%):</span><span id="taxValue">0.00</span></div>
+                        <div class="total-row grand-total"><span>الإجمالي الكلي:</span><span id="grandTotal">0.00</span></div>
                     </div>
                 </div>
-            </div>
+            </article>
         </main>
     </div>
 
+    <!-- SEO Content Section - Important for AdSense Approval -->
+    <section class="seo-content no-print">
+        <article>
+            <h2>لماذا تستخدم برنامج PRO Invoice لإنشاء فواتيرك؟</h2>
+            <p>يعتبر تنظيم الفواتير جزءاً أساسياً من نجاح أي عمل تجاري. أداة PRO Invoice توفر لك طريقة سريعة ومهنية لإنشاء <strong>فواتير ضريبية</strong> متوافقة مع المعايير. يمكنك من خلال الموقع إضافة بيانات العميل، تحديد نسبة الضريبة، وحساب الإجمالي تلقائياً بضغطة زر واحدة.</p>
+            
+            <h3>مميزات برنامج الفواتير المجاني:</h3>
+            <ul>
+                <li>سهولة الاستخدام وبدون الحاجة لتسجيل حساب.</li>
+                <li>حساب تلقائي لضريبة القيمة المضافة (VAT).</li>
+                <li>دعم كامل للغة العربية وتنسيقات الجوال.</li>
+                <li>إمكانية تحميل الفاتورة مباشرة بصيغة PDF للطباعة.</li>
+            </ul>
+
+            <h3>كيفية إنشاء فاتورة ضريبية؟</h3>
+            <p>ببساطة، قم بإدخال اسم مؤسستك في الأعلى، ثم أضف بيانات العميل وتاريخ الفاتورة. بعد ذلك، ابدأ بإضافة المنتجات أو الخدمات مع الكميات والأسعار. النظام سيقوم بالباقي من حسابات دقيقة وضمان مظهر احترافي للفاتورة.</p>
+        </article>
+    </section>
+
+    <footer class="main-footer no-print">
+        <div class="footer-links">
+            <a onclick="showModal('about')">من نحن</a> | 
+            <a onclick="showModal('privacy')">سياسة الخصوصية</a> | 
+            <a onclick="showModal('terms')">شروط الاستخدام</a>
+        </div>
+        <p>&copy; 2024 جميع الحقوق محفوظة لـ PRO Invoice - أداة الفواتير المجانية.</p>
+    </footer>
+
+    <!-- Modals Logic -->
+    <div id="modalOverlay" class="modal no-print">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
     <script>
+        // Core Logic
         window.onload = () => {
             document.getElementById('invDate').valueAsDate = new Date();
-            document.getElementById('invNum').value = localStorage.getItem('inv_count') || 1001;
+            document.getElementById('invNum').value = localStorage.getItem('pro_inv_count') || 1001;
             addRow();
         };
-
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
 
         function addRow() {
             const tbody = document.getElementById("tbody");
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td><input type="text" class="desc" placeholder="وصف..."></td>
-                <td><input type="number" class="qty" value="1" oninput="calculate()"></td>
-                <td><input type="number" class="price" value="0.00" oninput="calculate()"></td>
-                <td style="font-weight:bold" class="line-total">0.00</td>
+                <td><input type="text" placeholder="وصف الخدمة..."></td>
+                <td><input type="number" class="qty" value="1" min="1" oninput="calculate()"></td>
+                <td><input type="number" class="price" value="0.00" step="0.01" oninput="calculate()"></td>
+                <td style="font-weight:700;"><span class="line-total">0.00</span></td>
             `;
             tbody.appendChild(row);
         }
 
         function calculate() {
             let subtotal = 0;
+            const currency = document.getElementById("currency").value;
             document.querySelectorAll("#tbody tr").forEach(row => {
                 const q = parseFloat(row.querySelector(".qty").value) || 0;
                 const p = parseFloat(row.querySelector(".price").value) || 0;
@@ -195,19 +242,38 @@
                 row.querySelector(".line-total").innerText = total.toFixed(2);
                 subtotal += total;
             });
+
             const taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
-            const tax = subtotal * (taxRate / 100);
-            const curr = document.getElementById("currency").value;
+            const taxVal = subtotal * (taxRate / 100);
             
-            document.getElementById("subTotal").innerText = subtotal.toFixed(2) + " " + curr;
-            document.getElementById("taxValue").innerText = tax.toFixed(2) + " " + curr;
-            document.getElementById("grandTotal").innerText = (subtotal + tax).toFixed(2) + " " + curr;
+            document.getElementById("taxLabel").innerText = taxRate;
+            document.getElementById("subTotal").innerText = subtotal.toFixed(2) + " " + currency;
+            document.getElementById("taxValue").innerText = taxVal.toFixed(2) + " " + currency;
+            document.getElementById("grandTotal").innerText = (subtotal + taxVal).toFixed(2) + " " + currency;
         }
 
-        function processInvoice() {
-            if(!document.getElementById("clientName").value) return alert("أدخل اسم العميل");
-            localStorage.setItem('inv_count', parseInt(document.getElementById('invNum').value) + 1);
+        function generatePDF() {
+            const client = document.getElementById("clientName").value;
+            if(!client) return alert("يرجى إدخال اسم العميل أولاً.");
+            
+            localStorage.setItem('pro_inv_count', parseInt(document.getElementById('invNum').value) + 1);
             window.print();
+        }
+
+        // Modals Content
+        const contents = {
+            about: "<h2>من نحن</h2><p>نحن منصة PRO Invoice، نهدف لتوفير أدوات برمجية مجانية وسهلة الاستخدام لأصحاب المشاريع الصغيرة والمتوسطة لمساعدتهم في تنظيم معاملاتهم المالية باحترافية.</p>",
+            privacy: "<h2>سياسة الخصوصية</h2><p>نحن نحترم خصوصيتك. كافة البيانات التي يتم إدخالها في الفاتورة يتم معالجتها داخل متصفحك فقط ولا يتم تخزينها في خوادمنا. نحن نستخدم كوكيز جوجل أدسينس لتحسين تجربة الإعلانات.</p>",
+            terms: "<h2>شروط الاستخدام</h2><p>باستخدامك لهذا الموقع، أنت توافق على أن الخدمة مقدمة كما هي. نحن لا نتحمل مسؤولية أي أخطاء حسابية ناتجة عن إدخال بيانات خاطئة. الأداة مجانية للاستخدام الشخصي والتجاري.</p>"
+        };
+
+        function showModal(type) {
+            document.getElementById('modalBody').innerHTML = contents[type];
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
         }
     </script>
 </body>
